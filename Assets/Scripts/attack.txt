@@ -1,0 +1,21 @@
+    void HandleAttack()
+    {
+        // Offset the circle so it's in front of the knight, not at his center
+        Vector2 attackPoint = transform.position + (transform.right * 0.2f);
+        float attackRange = 1.5f;
+        LayerMask enemyLayer = LayerMask.GetMask("Enemy");
+
+        // Look for enemy within a circle
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint, attackRange, enemyLayer);
+
+        foreach (Collider2D enemy in hitEnemies)
+        {
+            // Output to console
+            Debug.Log("Hit something: " + enemy.name);
+            SkeletonAI skeleton = enemy.GetComponent<SkeletonAI>();
+            if (skeleton != null)
+            {
+                skeleton.TakeDamage(1);
+            }
+        }
+    }
