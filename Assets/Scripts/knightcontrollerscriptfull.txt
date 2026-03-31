@@ -33,7 +33,6 @@ public class KnightController : MonoBehaviour
 
         // Jumping Input (Space)
         isGrounded = Physics2D.OverlapCircle(groundCheck.position, groundCheckRadius, groundLayer);
-        anim.SetBool("isGrounded", isGrounded);
 
         if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
         {
